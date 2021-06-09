@@ -1,0 +1,20 @@
+﻿.color_deletemark {
+    color: red;
+}
+.back-information {
+    background-color: white;
+    width: 850px;
+    margin-top: 10px;
+    padding: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+    box-shadow: 5px 5px 15px 10px #6f5e5e;
+    border-radius: 10px;
+}
+.title-information {
+    background-color: #a7dad4;
+    text-align: center;
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 10px;
+}
