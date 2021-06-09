@@ -5,8 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
         <div class="col">
-            <div class="data-content no-margin">
-                <div class="site-title">Flights</div>
+            <div class="back-information">
+                <div ><h3>Flights</h3></div>
                 <hr />
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="Round trip" />
@@ -32,7 +32,7 @@
                 <input class="form-control" type="number" id="Passenger" />
                 
                 <div class="d-grid">
-                    <input type="search" value="Show flights" class="btn btn-primary btn-push-top-10" />
+                    <input type="search" value="Show flights" class="btn btn-primary log" />
                 </div>
             </div>
         </div>

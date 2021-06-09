@@ -4,15 +4,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <div class="row">
         <div class="col">
-            <div class="number-info">
-                <div class="site-title">Membership number</div>
-                <div class="number-text">544534542</div>
+            <div class="title-information">
+                <div><h3>Membership number</h3></div>
+                <div><h2>544534542</h2></div>
             </div>
         </div>
         <div class="col">
-            <div class="number-info">
-                <div class="site-title">Gift miles</div>
-                <div class="number-text">3000</div>
+            <div class="title-information">
+                <div ><h3>Gift miles</h3></div>
+                <div ><h2>3000</h2></div>
             </div>
         </div>
        
@@ -20,8 +20,8 @@
 
     <div class="row">
         <div class="col">
-            <div class="data-content">
-                <div class="site-title">Upcoming trips</div>
+            <div class="back-information">
+                <div><h3>Upcoming trips</h3></div>
                 <table class="table table-sm table-striped">
                     <thead>
                         <tr>
@@ -44,7 +44,7 @@
                             <td>Turkish</td>
                             <td>07/30/2021</td>
                             <td>08/30/2021</td>
-                            <td><a href="#" class="delete-mark">X</a></td>
+                            <td><a href="#" class="color_deletemark">X</a></td>
                         </tr>
                         <tr>
                             <td>TSN95</td>
@@ -54,7 +54,7 @@
                             <td>New York</td>
                             <td>09/30/2021</td>
                             <td>11/30/2021</td>
-                            <td><a href="#" class="delete-mark">X</a></td>
+                            <td><a href="#" class="color_deletemark">X</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -63,8 +63,8 @@
     </div>
     <div class="row">
         <div class="col">
-            <div class="data-content">
-                <div class="site-title">Previous trips</div>
+            <div class="back-information">
+                <div><h3>Previous trips</h3></div>
                 <table class="table table-sm table-striped">
                     <thead>
                         <tr>
@@ -87,7 +87,7 @@
                             <td>Texas</td>
                             <td>01/30/2021</td>
                             <td>02/30/2021</td>
-                            <td><a href="#" class="delete-mark">X</a></td>
+                            <td><a href="#" class="color_deletemark">X</a></td>
                         </tr>
                         
                     </tbody>
