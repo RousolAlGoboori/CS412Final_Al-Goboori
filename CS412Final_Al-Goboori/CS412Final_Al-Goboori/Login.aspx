@@ -8,6 +8,8 @@
         <input type="text" id="Membership number or Username" class="form-control" />
         <label class="fw-bold" for="pass">Password</label>
         <input type="password" id="pass" class="form-control" />
+        <input type="checkbox" id="check">    
+        <span>Remember me</span> 
         <div class="clearfix">
             <input type="submit" value="Login" class="btn btn-primary float-end log" />
         </div>
