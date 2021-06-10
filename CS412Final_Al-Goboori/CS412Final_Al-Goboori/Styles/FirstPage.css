@@ -26,3 +26,13 @@
 .nav-space {
     margin-top: 10px;
 }
+.contact {
+    background-color: white;
+    border-radius: 15px;
+    width: 400px;
+    margin-top: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 15px 10px #6f5e5e;
+    padding-left: 8px;
+    padding-right: 8px;
+}
