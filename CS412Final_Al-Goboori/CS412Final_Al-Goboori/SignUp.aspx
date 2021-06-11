@@ -11,7 +11,12 @@
         <input type="email" id="email" class="form-control" />
         <label class="fw-bold" for="phone">Phone</label>
         <input type="tel" id="phone" class="form-control" />
-        <label class="fw-bold" for="pass">Password</label>
+        <div class="fw-bold"><h0>Gender</h0></div>
+        <input type="checkbox" id="checkbox3">
+        <span>Male</span>
+        <input type="checkbox" id="checkbox4">
+        <span>Female</span>
+        <div><label class="fw-bold" for="pass">Password</label></div>
         <input type="text" id="pass" class="form-control" />
         <input type="checkbox" id="checkbox1">    
         <span>Show</span> 
@@ -21,11 +26,6 @@
         </div>
         <input type="checkbox" id="checkbox2">    
         <span>Show</span>
-        <div class="fw-bold"<h0>Gender</h0></div>
-        <input type="checkbox" id="checkbox3">
-        <span>Male</span>
-        <input type="checkbox" id="checkbox4">
-        <span>Female</span>
         <div class="clearfix">
             <input type="submit" value="Sign Up" class="btn btn-primary float-end log" />
         </div>
