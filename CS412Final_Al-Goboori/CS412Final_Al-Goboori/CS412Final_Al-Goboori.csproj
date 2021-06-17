@@ -123,6 +123,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Login.Master" />
     <Content Include="Login.aspx" />
+    <Content Include="Scripts\SignUp.js" />
     <Content Include="SignUp.aspx" />
     <Content Include="ContactUs.aspx" />
     <Content Include="Main.Master" />
@@ -166,6 +167,9 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Domain\Booking.cs" />
+    <Compile Include="Domain\Trip.cs" />
+    <Compile Include="Domain\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

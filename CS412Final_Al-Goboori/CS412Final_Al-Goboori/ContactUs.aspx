@@ -7,26 +7,26 @@
     <div class="row">
         <div class="col">
             <div >
-                <div><h1>Contact US</h1></div>
-                <div><h>Our mailing address is:</h></div>
-                 <div><h>123 W Street</h></div>
-                 <div><h>Chicago,IL</h></div>
-                <div><h>Phone:123-456-7891</h></div>
+                <label class="fw-bold" for="show">Contact US</label>
+                <div><label  for="show">Our mailing address is:</label></div>
+                <div><label  for="show">123 W Street</label></div>
+                <div><label  for="show">Chicago,IL,60600</label></div>
+                <div><label  for="show">Phone:123-456-7891</label></div>
+            </div>
+     </div>
+       <div class="col">
+          <div class="contact">
+            <div><label class="fw-bold" for="<%= name.ClientID %>">Name</label></div>
+            <div><asp:TextBox ID="name" runat="server" CssClass="form-control"></asp:TextBox></div>
+            <div><label class="fw-bold" for="<%= email.ClientID %>">Email</label></div>
+            <div><asp:TextBox ID="email" runat="server" CssClass="form-control"></asp:TextBox></div>
+            <div><label class="fw-bold" for="<%= comment.ClientID %>">Enter your message</label></div>
+            <div><asp:TextBox ID="comment" Rows="15" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox></div>
+            <div class="d-grid">
+                <asp:Button ID="countactus" runat="server" Text="Send" CssClass="btn btn-primary log" />
             </div>
         </div>
-        <div class="col">
-            <div class="contact">
-       <div><label class="fw-bold" for="name">Name</label></div> 
-        <div><input type="text" id="name" class="form-control" /></div>
-        <div><label class="fw-bold" for="email">Email</label></div>
-        <div><input type="email" id="email" class="form-control" /></div>
-        <div><label class="fw-bold" for="comment">Enter your message</label></div>
-        <div><textarea id="comment" rows="15" class="form-control"></textarea></div>
-        <div class="d-grid">
-            <input type="submit" value="Submit" class="btn btn-primary log" />
-        </div>
-    </div>
-    </div>    
+      </div>    
     </div>
         
 
