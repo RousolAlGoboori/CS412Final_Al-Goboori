@@ -1,17 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Login.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CS412Final_Al_Goboori.LoginPage" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="center"><h2>Welcom to my airline reservation system</h2></div>
-     <div class="back-information">
-        <label class="fw-bold" for="Membership number or Username">Membership number or Username</label>
-        <input type="text" id="Membership number or Username" class="form-control" />
-        <label class="fw-bold" for="pass">Password</label>
-        <input type="password" id="pass" class="form-control" />
-        <input type="checkbox" id="check">    
-        <span>Remember me</span> 
+    <div class="center">
+        <label class="fw-bold" for="show">Welcom to my airline reservation system</label>
+    </div>
+    <div class="back-information">
+        <label class="fw-bold" for="<%= email.ClientID %>">Email</label>
+        <asp:TextBox ID="email" runat="server" TextMode="Email" CssClass="form-control"></asp:TextBox>
+        <label class="fw-bold" for="<%= pass.ClientID %>">Password</label>
+        <asp:TextBox ID="pass" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
         <div class="clearfix">
-            <input type="submit" value="Login" class="btn btn-primary float-end log" />
+            <asp:Button ID="Login" runat="server" Text="Login" CssClass="btn btn-primary float-end log" OnClick="Login_Click" />
         </div>
+
+        <asp:Panel ID="Panel1" runat="server" Visible="false">
+            <asp:Label ID="Label" runat="server" Text="label" ForeColor="Red">"></asp:Label>
+        </asp:Panel>
+
     </div>
 </asp:Content>

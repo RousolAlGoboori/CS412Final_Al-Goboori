@@ -11,6 +11,9 @@ namespace CS412Final_Al_Goboori
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            bool loggedIn = true;
+            if (loggedIn == false)
+                Response.Redirect("Login.aspx");
 
         }
     }
