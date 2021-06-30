@@ -29,81 +29,25 @@ namespace CS412Final_Al_Goboori
 
         protected void createFlight_Click(object sender, EventArgs e)
         {
-
             List<long> tripIds = new List<long>();
             foreach (ListItem trip in bookingList.Items)
             {
                 if (trip.Selected)
                 {
-                    //grab the service only if it's selected in the checkbox list
                     tripIds.Add(long.Parse(trip.Value));
                 }
             }
 
-            //do validation here before we create our order to make sure everything is good
             CreateBooking(from.Text, to.Text, DateTime.Parse(depart.Text), DateTime.Parse(returnDate.Text), tripIds);
 
 
-          /*  List<string> errors = new List<string>();
-            if (RadioButton1.Checked)
-                errors.Add("Round trip ");
-
-            if (RadioButton2.Checked)
-                errors.Add( "One way");
-
-
-            if (RadioButton3.Checked)
-                errors.Add("Multi-city");
-
-            Panel1.Visible = false;
-
-            if (string.IsNullOrWhiteSpace(from.Text))
-            {
-                errors.Add("Enter your departure city.");
-            }
-
-            if (string.IsNullOrWhiteSpace(to.Text))
-            {
-                errors.Add("Enter your  city.");
-            }
-
-            if (errors.Count == 0)
-            {
-                bool matchedInDatabase = false;
-                if (from.Text.ToLower() == "Chicago" && to.Text.ToLower() == "New York")
-                {
-                    matchedInDatabase = true;
-                }
-
-                if (matchedInDatabase)
-                {
-                    Booking book = new Booking()
-
-                    {
-                        DepartDate = DateTime.Now.AddDays(1),
-                        ReturnDate = DateTime.Now.AddDays(60),
-                       // Passenger = 1,
-                    };
-                }
-                else
-                {
-                    errors.Add("Invalid information.");
-                }
-            }
-            if (errors.Count > 0)
-            {
-                Panel1.Visible = true;
-                mErrors.Text = string.Join("<br />", errors);
-                return;
-
-            }*/
+         
         }
 
         protected void createTrip_Click(object sender, EventArgs e)
         {
             decimal price = 0;
 
-            //try to convert the price to a decimal and if successful, lets create the service
             if (decimal.TryParse(tripPrice.Text, out price))
             {
                 CreateTrip(tripName.Text, price);

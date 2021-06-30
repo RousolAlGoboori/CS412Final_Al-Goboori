@@ -19,21 +19,21 @@ namespace CS412Final_Al_Goboori
                 Name = "Round trip",
                 From = "Chicago",
                 To = "Turkish",
-                 Price = 1000
+                Price = 1000
             },
             new Trip() {
                 Id = 2,
                 Name = "One way",
                 From = "Chicago",
                 To = "Texas",
-                 Price = 500
+                Price = 500
             },
             new Trip() {
                  Id = 3,
                 Name = "Multi-city",
                 From = "Chicago",
                 To = "New York",
-                 Price = 1500
+                Price = 1500
             }
         };
 
