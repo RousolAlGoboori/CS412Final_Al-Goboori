@@ -1,4 +1,6 @@
-﻿using CS412Final_Al_Goboori.Domain;
+﻿using CS412Final_Al_Goboori.BLL;
+using CS412Final_Al_Goboori.BLL.Interfaces;
+using CS412Final_Al_Goboori.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace CS412Final_Al_Goboori
 {
     public partial class SignUpPage : System.Web.UI.Page
     {
+        private readonly IUserBLL _userBLL = new UserBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -19,7 +22,6 @@ namespace CS412Final_Al_Goboori
         {
             List<string> errors = new List<string>();
             Panel1.Visible = false;
-
             if (string.IsNullOrWhiteSpace(first.Text))
             {
                 errors.Add("Please provide a first name.");
@@ -34,7 +36,6 @@ namespace CS412Final_Al_Goboori
             {
                 errors.Add("Please provide a properly formatted email address.");
             }
-
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
                 errors.Add("Please provide a password.");
@@ -57,6 +58,10 @@ namespace CS412Final_Al_Goboori
                 Email = email.Text,
                 Password = txtPassword.Text
             };
+            User newUser = _userBLL.CreateUser(user);
+
+            Session["user"] = newUser;
+
             Response.Redirect("MyTrips.aspx");
         }
 

@@ -23,8 +23,11 @@
             <div><label class="fw-bold" for="<%= comment.ClientID %>">Enter your message</label></div>
             <div><asp:TextBox ID="comment" Rows="15" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox></div>
             <div class="d-grid">
-                <asp:Button ID="countactus" runat="server" Text="Send" CssClass="btn btn-primary log" />
+                <asp:Button ID="countactus" runat="server" Text="Send" CssClass="btn btn-primary log" OnClick="countactus_Click"/>
             </div>
+               <asp:Panel ID="Panel1" runat="server" Visible="false">
+            <asp:Label ID="mErrors" runat="server" Text="Label" CssClass="error-color"></asp:Label>
+        </asp:Panel>
         </div>
       </div>    
     </div>

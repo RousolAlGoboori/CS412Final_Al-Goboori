@@ -1,4 +1,6 @@
-﻿using CS412Final_Al_Goboori.Domain;
+﻿using CS412Final_Al_Goboori.BLL;
+using CS412Final_Al_Goboori.BLL.Interfaces;
+using CS412Final_Al_Goboori.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace CS412Final_Al_Goboori
 {
     public partial class LoginPage : System.Web.UI.Page
     {
+        private readonly IUserBLL _userBLL = new UserBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -33,21 +36,11 @@ namespace CS412Final_Al_Goboori
 
             if (errors.Count == 0)
             {
-                bool matchedInDatabase = false;
-                if (email.Text.ToLower() == "ralgoboori@neiu.edu" && pass.Text == "123")
-                {
-                    matchedInDatabase = true;
-                }
+                User user = _userBLL.GetUser(email.Text.Trim(), pass.Text);
 
-                if (matchedInDatabase)
+                if (user != null)
                 {
-                    User user = new User()
-                    {
-                        First = "Rousol",
-                        Last = "Al Goboori",
-                        Email = "ralgoboori@neiu.edu",
-                        Password = "123"
-                    };
+                    Session["user"] = user;
                     Response.Redirect("MyTrips.aspx");
                 }
                 else
