@@ -12,8 +12,11 @@ namespace CS412Final_Al_Goboori.Domain {
         public User Customer { get; set; }
         public DateTime DepartDate { get; set; }
         public DateTime ReturnDate { get; set; }
-        public int Passenger { get; set; }
+        //  public int Passenger { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
 
         public List<Trip> Trips { get; set; }
+        public decimal Total => Trips.Sum(x => x.Price);
     }
 }

@@ -13,11 +13,6 @@
         <asp:TextBox ID="email" TextMode="Email" runat="server" CssClass="form-control"></asp:TextBox>
         <label class="fw-bold" for="<%= phone.ClientID %>">Phone</label>
         <asp:TextBox ID="phone" TextMode="phone" runat="server" CssClass="form-control"></asp:TextBox>
-        <label class="fw-bold" for="show">Gender</label>
-        <div>
-            <asp:RadioButton ID="RadioButton1" GroupName="1" runat="server" Text="Male" />
-            <asp:RadioButton ID="RadioButton2" GroupName="1" runat="server" Text="Female" />
-        </div>
         <div>
             <label class="fw-bold" for="<%= txtPassword.ClientID %>">Password</label>
             <asp:TextBox ID="txtPassword" ClientIDMode="Static" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>

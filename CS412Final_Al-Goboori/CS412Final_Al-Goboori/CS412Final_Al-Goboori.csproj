@@ -167,6 +167,12 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\BookingBLL.cs" />
+    <Compile Include="BLL\Interfaces\IBookingBLL.cs" />
+    <Compile Include="BLL\Interfaces\IUserBLL.cs" />
+    <Compile Include="BLL\UserBLL.cs" />
+    <Compile Include="DAL\BookingDAL.cs" />
+    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Domain\Booking.cs" />
     <Compile Include="Domain\Trip.cs" />
     <Compile Include="Domain\User.cs" />
@@ -195,6 +201,10 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\BookingRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBookingRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

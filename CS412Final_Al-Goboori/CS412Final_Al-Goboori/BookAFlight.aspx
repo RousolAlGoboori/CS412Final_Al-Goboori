@@ -7,32 +7,48 @@
     <div class="row">
         <div class="col">
             <div class="back-information">
-                <div>
-                    <h3>Flights</h3>
-                </div>
+                <div >Book A Flight</div>
                 <hr />
-                <asp:RadioButton ID="RadioButton1" GroupName="1" runat="server" Text="Round trip" />
-                <asp:RadioButton ID="RadioButton2" GroupName="1" runat="server" Text="One way" />
-                <asp:RadioButton ID="RadioButton3" GroupName="1" runat="server" Text="Multi-city" />
-                <asp:Button ID="Button1" runat="server" Text="Choose" OnClick="Button1_Click" /><br />
+                <label class="fw-bold">Select </label>
+                <asp:CheckBoxList ID="bookingList" runat="server" CssClass="form-check"></asp:CheckBoxList>
+                <div runat="server" visible="<%# bookingList.Items.Count > 0 %>">
+                    None
+                </div>
+              
                 <label class="fw-bold" for="<%= from.ClientID %>">From</label>
                 <asp:TextBox ID="from" runat="server" CssClass="form-control"></asp:TextBox>
                 <label class="fw-bold" for="<%= to.ClientID %>">To</label>
                 <asp:TextBox ID="to" runat="server" CssClass="form-control"></asp:TextBox>
-                <label class="fw-bold" for="Depart">Depart</label>
-                <input class="form-control" type="date" id="Depart" />
-                <label class="fw-bold" for="Return">Return</label>
-                <input class="form-control" type="date" id="Return" />
-                <label class="fw-bold" for="Passenger">Passenger</label>
-                <input class="form-control" type="number" id="Passenger" />
+
+                <label class="fw-bold" for="<%= depart.ClientID %>">Depart Date</label>
+                <asp:TextBox ID="depart" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
+
+                <label class="fw-bold" for="<%= returnDate.ClientID %>">Return Date</label>
+                <asp:TextBox ID="returnDate" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
+
 
                 <div class="clearfix">
-                    <asp:Button ID="search" runat="server" Text="Show flights" CssClass="btn btn-primary log"  OnClick="search_Click" />
+                    <asp:Button ID="createFlight" runat="server" Text="Create flight" CssClass="btn btn-primary log"  OnClick="createFlight_Click" />
                 </div>
                      <asp:Panel ID="Panel1" runat="server" Visible="false">
                     <asp:Label ID="mErrors" runat="server" Text="Label" CssClass="error-color"></asp:Label>
                 </asp:Panel>
 
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="back-information">
+                <div>Create Trip Type</div>
+                <hr />
+                <label class="fw-bold" for="tripName">Trip Name</label>
+                <asp:TextBox ID="tripName" ClientIDMode="Static" runat="server" CssClass="form-control"></asp:TextBox>
+                <label class="fw-bold" for="servicePrice">Trip Price</label>
+                <asp:TextBox ID="tripPrice" ClientIDMode="Static" runat="server" CssClass="form-control"></asp:TextBox>
+                <div class="d-grid">
+                    <asp:Button ID="createTrip" runat="server" Text="Create" CssClass="btn btn-primary btn-push-top-10" OnClick="createTrip_Click"/>
+                </div>
             </div>
         </div>
     </div>
