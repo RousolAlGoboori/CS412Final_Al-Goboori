@@ -12,6 +12,7 @@ namespace CS412Final_Al_Goboori
 {
     public partial class SignUpPage : System.Web.UI.Page
     {
+        private readonly INotificationBLL _notificationBLL = new NotificationBLL();
         private readonly IUserBLL _userBLL = new UserBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,6 +37,10 @@ namespace CS412Final_Al_Goboori
             {
                 errors.Add("Please provide a properly formatted email address.");
             }
+            if (string.IsNullOrWhiteSpace(phone.Text))
+            {
+                errors.Add("Please provide phone number.");
+            }
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
                 errors.Add("Please provide a password.");
@@ -56,15 +61,36 @@ namespace CS412Final_Al_Goboori
                 First = first.Text,
                 Last = last.Text,
                 Email = email.Text,
+                Phone = phone.Text,
                 Password = txtPassword.Text
             };
             User newUser = _userBLL.CreateUser(user);
+            if (newUser != null)
+            {
+                Session["user"] = newUser;
+                Response.Redirect("MyTrips.aspx");
+            }
 
-            Session["user"] = newUser;
+            Panel1.Visible = true;
+            mErrors.Text = "User was not created. Please try again.";
+            SendFeedback(first.Text, last.Text, email.Text, phone.Text, txtPassword.Text);
+        }
+        public void SendFeedback(string first, string last, string userEmail, string phone, string password)
+        {
+            string to = userEmail;
+            string subject = "OTM Feedback";
+            string replyTo = to;
+            string body = $@"
+                            <p>User First: {first}</p>
+                            <p>User Last: {last}</p>
+                            <p>User Email: {userEmail}</p>
+                            <p>User Phone: {phone}</p>
+                            <p>User Password: {password}</p>
+                            ";
 
-            Response.Redirect("MyTrips.aspx");
+            _notificationBLL.SendEmail(to, subject, body, replyTo);
         }
 
-        
+
     }
 }

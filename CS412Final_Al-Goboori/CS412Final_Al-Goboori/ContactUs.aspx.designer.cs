@@ -51,13 +51,13 @@ namespace CS412Final_Al_Goboori
         protected global::System.Web.UI.WebControls.Button countactus;
 
         /// <summary>
-        /// Panel1 control.
+        /// ePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Panel ePanel1;
 
         /// <summary>
         /// mErrors control.

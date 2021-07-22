@@ -1,78 +1,174 @@
 ﻿using CS412Final_Al_Goboori.Domain;
+using CS412Final_Al_Goboori.Repositories;
+using CS412Final_Al_Goboori.Repositories.Interfaces;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 
 namespace CS412Final_Al_Goboori.DAL
 {
+
     public static class BookingDAL
     {
-        private static readonly List<Booking> _book = new List<Booking>() {
-            new Booking() {
-                Id = 1,
-                Customer = new User() {
-                    Id = 1,
-                    First = "Rousol",
-                    Last = "Al Goboori",
-                    
-                },
-                DepartDate = DateTime.Now.AddDays(-1),
-                ReturnDate = DateTime.Now.AddDays(10),
-
-                Trips = new List<Trip>() {
-                    new Trip() {
-                         Id = 1,
-                         Name = "Multi-city",
-                         From = "Chicago",
-                         To = "New York",
-                         Price = 1500
-                    },
-
-                }
-            },
-            new Booking() {
-                Id = 2,
-                Customer = new User() {
-                    Id = 1,
-                    First = "Rousol",
-                    Last = "Al Goboori"
-                },
-                DepartDate = DateTime.Now.AddDays(-15),
-                ReturnDate = DateTime.Now.AddDays(13),
-                Trips = new List<Trip>() {
-                    new Trip() {
-                         Id = 1,
-                         Name = "One way",
-                         From = "Chicago",
-                         To = "Turkish",
-                         Price = 500
+        private readonly static IError _error = new Error();
+        public static List<Booking> GetBooking()
+        {
+            List<Booking> booking = new List<Booking>();
+            string sql = "SELECT * FROM Booking";
+            using (MySqlConnection conn = new MySqlConnection(WebConfigurationManager.AppSettings["connString"]))
+            {
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        cmd.Connection.Open();
+                       // cmd.Parameters.AddWithValue("@UserId", userId);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    booking.Add(new Booking()
+                                    {
+                                        CustomerName = reader.GetString("CustomerName"),
+                                        Id = reader.GetInt64("Id"),
+                                        From = reader.GetString("LFrom"),
+                                        To = reader.GetString("LTo"),
+                                        DepartDate = reader.GetDateTime("DepartDate"),
+                                        ReturnDate = reader.GetDateTime("ReturnDate"),
+                                        UserById = reader.GetInt64("UserId")
+                                    });
+                                }
+                            }
+                        }
                     }
-                }
-            },
-            new Booking() {
-                Id = 3,
-                Customer = new User() {
-                    Id = 1,
-                    First = "Rousol",
-                    Last = "Al Goboori"
-                },
-                DepartDate = DateTime.Now.AddDays( 1),
-                ReturnDate = DateTime.Now.AddDays(18),
-                Trips = new List<Trip>() {
-                    new Trip() {
-                         Id = 2,
-                         Name = "Round trip",
-                         From = "Chicago",
-                         To = "Texas",
-                         Price = 1000
+                    catch (Exception ex)
+                    {
+                        _error.Log(ex);
                     }
                 }
             }
-        };
-        public static List<Booking> GetBooking()
-        {
-            return _book;
+            return booking;
         }
+        public static List<Booking> GetCompletedBooking()
+        {
+            List<Booking> bookings = new List<Booking>();
+            string sql = "SELECT * FROM Booking WHERE DepartDate < NOW()";
+            using (MySqlConnection conn = new MySqlConnection(WebConfigurationManager.AppSettings["connString"]))
+            {
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        cmd.Connection.Open();
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    bookings.Add(new Booking()
+                                    {
+                                        CustomerName = reader.GetString("CustomerName"),
+                                        Id = reader.GetInt64("Id"),
+                                        From = reader.GetString("LFrom"),
+                                        To = reader.GetString("LTo"),
+                                        DepartDate = reader.GetDateTime("DepartDate"),
+                                        ReturnDate = reader.GetDateTime("ReturnDate"),
+                                        UserById = reader.GetInt64("UserId")
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _error.Log(ex);
+                    }
+                }
+            }
+            return bookings;
+        }
+        public static bool DeleteBooking(long bookingId)
+        {
+            string sql = @"DELETE FROM Booking WHERE Id=@UserId";
+            using (MySqlConnection conn = new MySqlConnection(WebConfigurationManager.AppSettings["connString"]))
+            {
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        cmd.Connection.Open();
+                        cmd.Parameters.AddWithValue("@UserId", bookingId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        _error.Log(ex);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public static long GetBookingCount()
+        {
+            long count = 0;
+            string sql = "SELECT COUNT(*) FROM Booking";
+            using (MySqlConnection conn = new MySqlConnection(WebConfigurationManager.AppSettings["connString"]))
+            {
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        cmd.Connection.Open();
+                        count = (long)cmd.ExecuteScalar();
+                    }
+                    catch (Exception ex)
+                    {
+                        _error.Log(ex);
+                    }
+                }
+            }
+            return count;
+        }
+       
+        public static Booking CreateBooking(Booking booking)
+        {
+            string sql = @"INSERT INTO Booking (CustomerName,LFrom, LTo,DepartDate,ReturnDate,UserId) VALUES (@CustomerName,@LFrom,@LTo, @DepartDate, @ReturnDate, @UserId);
+                            SELECT LAST_INSERT_ID();";
+            using (MySqlConnection conn = new MySqlConnection(WebConfigurationManager.AppSettings["connString"]))
+            {
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        cmd.Connection.Open();
+                        cmd.Parameters.AddWithValue("@CustomerName", booking.CustomerName);
+                        cmd.Parameters.AddWithValue("@LFrom", booking.From);
+                        cmd.Parameters.AddWithValue("@LTo", booking.To);
+                        cmd.Parameters.AddWithValue("@DepartDate", booking.DepartDate);
+                        cmd.Parameters.AddWithValue("@ReturnDate", booking.ReturnDate);
+                        cmd.Parameters.AddWithValue("@UserId", booking.UserId.Id);
+
+                        string o = cmd.ExecuteScalar().ToString();
+                        long id = 0;
+                        long.TryParse(o, out id);
+                        booking.Id = id;
+                    }
+                    catch (Exception ex)
+                    {
+                        _error.Log(ex);
+                    }
+                }
+            }
+            return booking;
+        }
+        
     }
 }

@@ -11,10 +11,12 @@
                 <hr />
                 <label class="fw-bold">Select </label>
                 <asp:CheckBoxList ID="bookingList" runat="server" CssClass="form-check"></asp:CheckBoxList>
-                <div runat="server" visible="<%# bookingList.Items.Count > 0 %>">
+                <div runat="server" visible="<%# bookingList.Items.Count <= 0 %>">
                     None
                 </div>
-              
+
+                <label class="fw-bold" for="<%= customerName.ClientID %>">CustomerName</label>
+                <asp:TextBox ID="customerName" runat="server" CssClass="form-control"></asp:TextBox>
                 <label class="fw-bold" for="<%= from.ClientID %>">From</label>
                 <asp:TextBox ID="from" runat="server" CssClass="form-control"></asp:TextBox>
                 <label class="fw-bold" for="<%= to.ClientID %>">To</label>

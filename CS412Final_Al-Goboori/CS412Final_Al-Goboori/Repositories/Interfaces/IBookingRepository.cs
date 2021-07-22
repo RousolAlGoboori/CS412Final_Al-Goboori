@@ -9,5 +9,9 @@ namespace CS412Final_Al_Goboori.Repositories.Interfaces
     public interface IBookingRepository
     {
         List<Booking> GetBooking();
+        Booking CreateBooking(Booking booking);
+        long GetBookingCount();
+        List<Booking> GetCompletedBooking();
+        bool DeleteBooking(long orderId);
     }
 }
