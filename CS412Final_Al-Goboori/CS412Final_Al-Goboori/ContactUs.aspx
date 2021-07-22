@@ -25,7 +25,7 @@
             <div class="d-grid">
                 <asp:Button ID="countactus" runat="server" Text="Send" CssClass="btn btn-primary log" OnClick="countactus_Click"/>
             </div>
-               <asp:Panel ID="Panel1" runat="server" Visible="false">
+               <asp:Panel ID="ePanel1" runat="server" Visible="false">
             <asp:Label ID="mErrors" runat="server" Text="Label" CssClass="error-color"></asp:Label>
         </asp:Panel>
         </div>

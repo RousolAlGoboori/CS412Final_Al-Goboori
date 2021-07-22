@@ -4,12 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
-        <div class="col">
-            <div class="title-information">
-                <div class="site-title">Money Collected</div>
-                <div class="number-text">$<asp:Literal ID="litMoneyCollected" runat="server"></asp:Literal></div>
-            </div>
-        </div>
+       
 
          <div class="col">
             <div class="title-information">

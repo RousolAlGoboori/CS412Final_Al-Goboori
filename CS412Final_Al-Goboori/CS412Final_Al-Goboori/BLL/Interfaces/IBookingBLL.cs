@@ -10,5 +10,10 @@ namespace CS412Final_Al_Goboori.BLL.Interfaces
     {
         decimal GetMoneyCollected();
         List<Booking> GetBooking();
+        long GetBookingCount();
+        List<Booking> GetCompletedBooking();
+        Booking CreateBooking(Booking booking, List<long> tripIds);
+        bool DeleteBooking(long orderId);
+
     }
 }

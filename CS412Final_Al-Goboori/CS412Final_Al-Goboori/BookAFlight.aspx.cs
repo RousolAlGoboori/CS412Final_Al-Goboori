@@ -1,4 +1,6 @@
-﻿using CS412Final_Al_Goboori.Domain;
+﻿using CS412Final_Al_Goboori.BLL;
+using CS412Final_Al_Goboori.BLL.Interfaces;
+using CS412Final_Al_Goboori.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +12,28 @@ namespace CS412Final_Al_Goboori
 {
     public partial class BookAFlightPage : System.Web.UI.Page
     {
+        private readonly IBookingBLL _bookingBLL = new BookingBLL();
+        private readonly ITripBLL _tripBLL = new TripBLL();
+        private readonly INotificationBLL _notificationBLL = new NotificationBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Trip> trips = GetServices();
-            foreach (Trip s in trips)
+            if (!Page.IsPostBack)
             {
-                ListItem listItem = new ListItem($"{s.Name} - {s.Price}", s.Id.ToString());
+                
+                rebindTrips();
+            }
+        }
+
+        private void rebindTrips()
+        {
+            
+
+            bookingList.Items.Clear();
+            foreach (Trip s in _tripBLL.GetTrips())
+            {
+                ListItem listItem = new ListItem($"{s.Name}", s.Id.ToString());
                 bookingList.Items.Add(listItem);
             }
-
-        }
-        private List<Trip> GetServices()
-        {
-            return new List<Trip>();
         }
 
 
@@ -37,54 +48,60 @@ namespace CS412Final_Al_Goboori
                     tripIds.Add(long.Parse(trip.Value));
                 }
             }
+            Booking b = new Booking()
+            {
+                CustomerName = customerName.Text,
+                From = from.Text,
+                To = to.Text,
+                DepartDate = DateTime.Parse(depart.Text),
+                ReturnDate = DateTime.Parse(returnDate.Text),
+                UserId = (User)Session["user"]
+            };
+            _bookingBLL.CreateBooking(b, tripIds);
+            SendFeedback(customerName.Text, from.Text, to.Text, depart.Text, returnDate.Text);
 
-            CreateBooking(from.Text, to.Text, DateTime.Parse(depart.Text), DateTime.Parse(returnDate.Text), tripIds);
 
+        }
+        public void SendFeedback(string customerName, string from, string lTo, string depart, string returnDate)
+        {
+            string to = "rousolalgoboori@gmail.com";
+            string subject = "OTM Feedback";
+            string replyTo = to;
+            string body = $@"
+                            <p>Booking CustomerName: {customerName}</p>
+                            <p>Booking From: {from}</p>
+                            <p>Booking To: {lTo}</p>
+                            <p>Booking DepartDate: {depart}</p>
+                            <p>Booking  ReturnDate: {returnDate}</p>
+                            ";
 
-         
+            _notificationBLL.SendEmail(to, subject, body, replyTo);
         }
 
         protected void createTrip_Click(object sender, EventArgs e)
         {
-            decimal price = 0;
-
-            if (decimal.TryParse(tripPrice.Text, out price))
-            {
-                CreateTrip(tripName.Text, price);
-            }
-
-        }
-        private bool CreateBooking(string from, string to, DateTime departDate, DateTime rDate, List<long> tripIds)
-        {
-            List<Trip> trips = new List<Trip>();
-            foreach (long tripId in tripIds)
-            {
-                trips.Add(new Trip() { Id = tripId });
-            }
-
-            Booking b = new Booking()
-            {
-                From = from,
-                To = to,
-                DepartDate = departDate,
-                ReturnDate = rDate,
-                Trips = trips
-            };
+            decimal price = 0M;
 
             
-            return false;
-        }
-
-        private bool CreateTrip(string name, decimal price)
-        {
-           Trip trip = new Trip()
+            if (decimal.TryParse(tripPrice.Text, out price))
             {
-                Name = name,
-                Price = price
-            };
-
-            return false;
+               Trip trip = new Trip()
+                {
+                    Name = tripName.Text,
+                    Price = price
+                };
+                trip = _tripBLL.CreateTrip(trip);
+                if (trip.Id > 0)
+                {
+                    tripName.Text = "";
+                    tripPrice.Text = "";
+                    rebindTrips();
+                }
+            }
         }
+
+
+       
 
     }
 }

@@ -15,6 +15,11 @@ namespace CS412Final_Al_Goboori.Repositories
             return UserDAL.CreateUser(user);
         }
 
+        public bool DoesUserExistByEmail(string email)
+        {
+            return UserDAL.DoesUserExistByEmail(email);
+        }
+
         public User Get(string first,string email)
         {
             return UserDAL.Get( first, email);
@@ -24,5 +29,11 @@ namespace CS412Final_Al_Goboori.Repositories
         {
             return UserDAL.GetUser(email, password);
         }
+
+        public List<User> GetUsers(List<long> userIds)
+        {
+            return UserDAL.GetUsers(userIds);
+        }
+        
     }
 }

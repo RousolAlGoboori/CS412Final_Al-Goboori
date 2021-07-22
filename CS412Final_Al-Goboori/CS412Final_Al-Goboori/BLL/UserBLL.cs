@@ -19,7 +19,12 @@ namespace CS412Final_Al_Goboori.BLL
 
         public User CreateUser(User user)
         {
-            return _userRepository.CreateUser(user);
+
+            if (_userRepository.DoesUserExistByEmail(user.Email) == false)
+            {
+                return _userRepository.CreateUser(user);
+            }
+            return null;
         }
 
         public User Get(string first, string email)

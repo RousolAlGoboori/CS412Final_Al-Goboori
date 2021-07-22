@@ -11,5 +11,8 @@ namespace CS412Final_Al_Goboori.Repositories.Interfaces
         User GetUser(string email, string password);
         User Get(string first,string email);
         User CreateUser(User user);
+        bool DoesUserExistByEmail(string email);
+        List<User> GetUsers(List<long> userIds);
+        
     }
 }
