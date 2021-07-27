@@ -36,7 +36,7 @@ namespace CS412Final_Al_Goboori.BLL
                 {
                     try
                     {
-                        await client.SendMailAsync(message);
+                        client.Send(message);
                     }
                     catch (Exception ex)
                     {

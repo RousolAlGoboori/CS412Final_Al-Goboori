@@ -13,27 +13,7 @@ namespace CS412Final_Al_Goboori.DAL
     public static class TripDAL
     {
         private readonly static IError _error = new Error();
-        private static List<Trip> _trips = new List<Trip>() {
-            new Trip() {
-                Id = 1,
-                Name = "Round trip",
-               
-                Price = 1000
-            },
-            new Trip() {
-                Id = 2,
-                Name = "One way",
-               
-                Price = 500
-            },
-            new Trip() {
-                 Id = 3,
-                Name = "Multi-city",
-               
-                Price = 1500
-            }
-        };
-      
+       
         public static List<Trip> GetTrips()
         {
             List<Trip> trips = new List<Trip>();
