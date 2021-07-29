@@ -9,11 +9,15 @@ namespace CS412Final_Al_Goboori.BLL.Interfaces
     public interface IBookingBLL
     {
         decimal GetMoneyCollected();
-        List<Booking> GetBooking();
+        List<Booking> GetBooking(long userId = -1);
         long GetBookingCount();
+        Booking GetBookings(long bookingId);
         List<Booking> GetCompletedBooking();
         Booking CreateBooking(Booking booking, List<long> tripIds);
-        bool DeleteBooking(long orderId);
+        bool DeleteBooking(long bookingId);
+      
+        Booking ModifyBooking(Booking booking, List<long> tripIds);
+        List<Booking> GetBookingByCustomerName(string partialName);
 
     }
 }

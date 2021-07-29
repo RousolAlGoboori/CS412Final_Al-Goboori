@@ -27,11 +27,6 @@ namespace CS412Final_Al_Goboori.BLL
             return null;
         }
 
-        public User Get(string first, string email)
-        {
-            return _userRepository.Get(first, email);
-        }
-
         public User GetUser(string email, string password)
         {
             return _userRepository.GetUser(email, password);

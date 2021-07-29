@@ -65,7 +65,7 @@ namespace CS412Final_Al_Goboori
         public void SendFeedback(string customerName, string from, string lTo, string depart, string returnDate)
         {
             string to = "rousolalgoboori@gmail.com";
-            string subject = "OTM Feedback";
+            string subject = "Booking a flight";
             string replyTo = to;
             string body = $@"
                             <p>Booking CustomerName: {customerName}</p>

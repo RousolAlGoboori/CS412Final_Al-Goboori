@@ -13,19 +13,9 @@ namespace CS412Final_Al_Goboori.DAL
     public static class UserDAL
     {
         private readonly static IError _error = new Error();
-        private static List<User> _users = new List<User>() {
-            new User() {
-                Id = 1,
-                First = "Rousol",
-                Last = "Al Goboori",
-                Email = "ralgoboori@neiu.edu",
-                Password = "123"
-            }
-        };
+        
         public static User GetUser(string email, string password)
         {
-
-            // return _users.FirstOrDefault(x => x.Email == email && x.Password == password);
             User user = null;
             string sql = @"SELECT *  
                             FROM User
@@ -66,11 +56,7 @@ namespace CS412Final_Al_Goboori.DAL
             }
             return user;
         }
-        public static User Get(string first, string email)
-        {
-
-            return _users.FirstOrDefault(x => x.First == first && x.Email == email);
-        }
+      
         public static List<User> GetUsers(List<long> userIds)
         {
             List<User> users = new List<User>();
