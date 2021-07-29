@@ -20,14 +20,24 @@ namespace CS412Final_Al_Goboori.Repositories
             return BookingDAL.DeleteBooking(orderId);
         }
 
-        public List<Booking> GetBooking()
+        public List<Booking> GetBooking(long userId = -1)
         {
-            return BookingDAL.GetBooking();
+            return BookingDAL.GetBooking(userId);
+        }
+
+        public List<Booking> GetBookingByCustomerName(string partialName)
+        {
+            return BookingDAL.GetBookingByCustomerName(partialName);
         }
 
         public long GetBookingCount()
         {
             return BookingDAL.GetBookingCount();
+        }
+
+        public Booking GetBookings(long bookingId)
+        {
+            return BookingDAL.GetBookings(bookingId);
         }
 
         public List<Booking> GetCompletedBooking()

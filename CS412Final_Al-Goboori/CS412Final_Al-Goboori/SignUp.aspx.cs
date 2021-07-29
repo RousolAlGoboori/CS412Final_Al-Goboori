@@ -78,7 +78,7 @@ namespace CS412Final_Al_Goboori
         public void SendFeedback(string first, string last, string userEmail, string phone, string password)
         {
             string to = userEmail;
-            string subject = "OTM Feedback";
+            string subject = "Create your account";
             string replyTo = to;
             string body = $@"
                             <p>User First: {first}</p>

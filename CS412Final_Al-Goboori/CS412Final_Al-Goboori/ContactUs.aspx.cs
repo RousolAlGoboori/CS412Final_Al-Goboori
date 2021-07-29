@@ -35,7 +35,7 @@ namespace CS412Final_Al_Goboori
         public void SendFeedback(string userName, string userEmail, string comment)
         {
             string to = "rousolalgoboori@gmail.com";
-            string subject = "OTM Feedback";
+            string subject = "Tell us about your feedback";
             string replyTo = to;
             string body = $@"
                             <p>User Email: {userEmail}</p>

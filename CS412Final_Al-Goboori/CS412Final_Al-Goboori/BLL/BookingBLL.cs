@@ -22,9 +22,12 @@ namespace CS412Final_Al_Goboori.BLL
             _tripRepository = new TripRepository();
             _userRepository = new UserRepository();
         }
-        public List<Booking> GetBooking()
+        public List<Booking> GetBooking(long userId = -1)
         {
-            List<Booking> bookings = _bookingRepository.GetBooking();
+            List<Booking> orders = AssociateTripsWithBooking(_bookingRepository.GetBooking(userId));
+            AssociateUsersWithBooking(orders);
+            return orders;
+            /*List<Booking> bookings = _bookingRepository.GetBooking();
 
             List<BookingTrips> bookingTrips = _tripRepository.GetBookingTrips(bookings.Select(x => x.Id).ToList());
 
@@ -36,7 +39,7 @@ namespace CS412Final_Al_Goboori.BLL
 
                 bookings.FirstOrDefault(x => x.Id == os.BookingId).Trips.Add(os.Trip);
             }
-                return bookings;
+                return bookings;*/
         }
        
         public long GetBookingCount()
@@ -62,10 +65,9 @@ namespace CS412Final_Al_Goboori.BLL
         }
         public bool DeleteBooking(long bookingId)
         {
-            //delete the orderservices
+            
             bool bookingTripsDeleted = _tripRepository.DeleteBookingTrip(bookingId);
 
-            //delete the order
             bool bookingDeleted = _bookingRepository.DeleteBooking(bookingId);
 
             return bookingTripsDeleted && bookingDeleted;
@@ -115,5 +117,39 @@ namespace CS412Final_Al_Goboori.BLL
             return booking;
         }
 
+        public Booking GetBookings(long bookingId)
+        {
+            Booking booking = _bookingRepository.GetBookings(bookingId);
+            if (booking != null)
+            {
+                booking = AssociateTripsWithBooking(new List<Booking> { booking }).FirstOrDefault();
+                AssociateUsersWithBooking(new List<Booking> { booking });
+            }
+
+            return booking;
+        }
+
+        public Booking ModifyBooking(Booking booking, List<long> tripIds)
+        {
+            try
+            {
+                if (tripIds?.Count > 0)
+                {
+                }
+
+                return booking;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<Booking> GetBookingByCustomerName(string partialName)
+        {
+            List<Booking> bookings = AssociateTripsWithBooking(_bookingRepository.GetBookingByCustomerName(partialName));
+            AssociateUsersWithBooking(bookings);
+            return bookings;
+        }
     }
 }

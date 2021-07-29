@@ -20,11 +20,6 @@ namespace CS412Final_Al_Goboori.Repositories
             return UserDAL.DoesUserExistByEmail(email);
         }
 
-        public User Get(string first,string email)
-        {
-            return UserDAL.Get( first, email);
-        }
-
         public User GetUser(string email, string password)
         {
             return UserDAL.GetUser(email, password);

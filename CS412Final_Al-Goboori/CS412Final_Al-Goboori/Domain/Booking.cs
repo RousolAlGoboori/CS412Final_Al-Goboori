@@ -10,15 +10,14 @@ namespace CS412Final_Al_Goboori.Domain {
     {
         public long Id { get; set; }
         public string CustomerName { get; set; }
-      
+        public List<Trip> Trips { get; set; }
         public DateTime DepartDate { get; set; }
         public DateTime ReturnDate { get; set; }
         public string From { get; set; }
        public string To { get; set; }
-        public User UserId { get; set; }
         public long UserById { get; set; }
-
-        public List<Trip> Trips { get; set; }
+        public User UserId { get; set; }
+        
         public decimal Total => Trips == null ? 0M : Trips.Sum(x => x.Price);
         public Booking()
         {
