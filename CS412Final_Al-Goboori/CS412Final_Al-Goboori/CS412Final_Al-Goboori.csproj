@@ -174,6 +174,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Login.Master" />
     <Content Include="Login.aspx" />
+    <Content Include="Scripts\BookingTrips.js" />
     <Content Include="Scripts\SignUp.js" />
     <Content Include="SignUp.aspx" />
     <Content Include="ContactUs.aspx" />
@@ -210,8 +211,12 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Styles\BookingControl.css" />
+    <Content Include="Styles\CustomerSearchControl.css" />
     <Content Include="Styles\FirstPage.css" />
     <Content Include="Styles\SecondPage.css" />
+    <Content Include="UserControls\BookingControl.ascx" />
+    <Content Include="UserControls\CustomerSearchControl.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
@@ -303,6 +308,20 @@
     </Compile>
     <Compile Include="BookAFlight.aspx.designer.cs">
       <DependentUpon>BookAFlight.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BookingControl.ascx.cs">
+      <DependentUpon>BookingControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\BookingControl.ascx.designer.cs">
+      <DependentUpon>BookingControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomerSearchControl.ascx.cs">
+      <DependentUpon>CustomerSearchControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\CustomerSearchControl.ascx.designer.cs">
+      <DependentUpon>CustomerSearchControl.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

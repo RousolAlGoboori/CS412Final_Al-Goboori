@@ -7,47 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CS412Final_Al_Goboori
+namespace CS412Final_Al_Goboori.UserControls
 {
 
 
-    public partial class MyTripsPage
+    public partial class CustomerSearchControl
     {
 
         /// <summary>
-        /// litCount control.
+        /// CustomerSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litCount;
+        protected global::System.Web.UI.WebControls.Panel CustomerSearch;
 
         /// <summary>
-        /// litGiftMiles control.
+        /// BlankCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litGiftMiles;
+        protected global::System.Web.UI.WebControls.Label BlankCustomer;
 
         /// <summary>
-        /// BookingControlRepeater control.
+        /// CustomerList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater BookingControlRepeater;
-
-        /// <summary>
-        /// userTrips control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView userTrips;
+        protected global::System.Web.UI.WebControls.Panel CustomerList;
     }
 }

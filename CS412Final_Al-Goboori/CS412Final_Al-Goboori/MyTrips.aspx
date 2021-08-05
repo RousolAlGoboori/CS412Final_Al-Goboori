@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="MyTrips.aspx.cs" Inherits="CS412Final_Al_Goboori.MyTripsPage" %>
 
+<%@ Register Src="~/UserControls/BookingControl.ascx" TagPrefix="ROUSOLControl" TagName="BookingControl" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -22,6 +25,18 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <asp:Repeater ID="BookingControlRepeater" runat="server" OnItemDataBound="BookingControlRepeater_ItemDataBound1">
+            <ItemTemplate>
+                <div class="col-5 title-information">
+                    <ROUSOLControl:BookingControl runat="server" id="BookingControl" />
+                    
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
+
     <div class="row">
         <div class="col">
             <div class="back-information">

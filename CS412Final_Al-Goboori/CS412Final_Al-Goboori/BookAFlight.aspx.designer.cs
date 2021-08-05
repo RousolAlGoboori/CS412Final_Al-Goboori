@@ -33,6 +33,15 @@ namespace CS412Final_Al_Goboori
         protected global::System.Web.UI.WebControls.TextBox customerName;
 
         /// <summary>
+        /// CustomerSearchControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CS412Final_Al_Goboori.UserControls.CustomerSearchControl CustomerSearchControl;
+
+        /// <summary>
         /// from control.
         /// </summary>
         /// <remarks>
