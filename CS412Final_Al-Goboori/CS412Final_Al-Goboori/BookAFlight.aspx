@@ -1,12 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="BookAFlight.aspx.cs" Inherits="CS412Final_Al_Goboori.BookAFlightPage
     " %>
 
+
+
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <script src="Scripts/BookingTrips.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
         <div class="col">
             <div class="back-information">
+                
                 <div >Book A Flight</div>
                 <hr />
                 <label class="fw-bold">Select </label>
@@ -17,6 +23,8 @@
 
                 <label class="fw-bold" for="<%= customerName.ClientID %>">CustomerName</label>
                 <asp:TextBox ID="customerName" runat="server" CssClass="form-control"></asp:TextBox>
+               
+                <ROUSOLControl:CustomerSearchControl runat="server" ID="CustomerSearchControl" />
                 <label class="fw-bold" for="<%= from.ClientID %>">From</label>
                 <asp:TextBox ID="from" runat="server" CssClass="form-control"></asp:TextBox>
                 <label class="fw-bold" for="<%= to.ClientID %>">To</label>

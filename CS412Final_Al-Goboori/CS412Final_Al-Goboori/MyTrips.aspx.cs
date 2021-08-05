@@ -1,6 +1,7 @@
 ﻿using CS412Final_Al_Goboori.BLL;
 using CS412Final_Al_Goboori.BLL.Interfaces;
 using CS412Final_Al_Goboori.Domain;
+using CS412Final_Al_Goboori.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,9 @@ namespace CS412Final_Al_Goboori
             if (Page.IsPostBack == false)
             {
                 ViewState["trips"] = _bookingBLL.GetBooking();
-
-                BindGridView();
-                SetPageData();
+                BindAllGrids();
+                //BindGridView();
+                // SetPageData();
                 int giftMiles = _bookingBLL.GetCompletedBooking().Count() * 1000;
                 litGiftMiles.Text = giftMiles.ToString();
                
@@ -102,11 +103,36 @@ namespace CS412Final_Al_Goboori
 
                     ViewState["trips"] = _bookingBLL.GetBooking();
 
-                    BindGridView();
-                    SetPageData();
+                    //BindGridView();
+                    //SetPageData();
+                    BindAllGrids();
 
                 }
             }
+        }
+        private void BindAllGrids()
+        {
+            BindGridView();
+            SetPageData();
+            BindBookingControlRepeater();
+        }
+        private void BindBookingControlRepeater()
+        {
+            BookingControlRepeater.DataSource = ViewState["trips"];
+            BookingControlRepeater.DataBind();
+        }
+
+        
+
+        protected void BookingControlRepeater_ItemDataBound1(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Booking booking = (Booking)e.Item.DataItem;
+                BookingControl bc = (BookingControl)e.Item.FindControl("BookingControl");
+                bc.Booking = booking;
+            }
+
         }
     }
 
